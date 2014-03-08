@@ -38,12 +38,13 @@
 
 (define (pi-approx n)
   (define (top-term n)
-    (+ (* (div n 2) 2) 2))
+    (* (+ (div n 2) 1) 2))
   (define (bottom-term n)
-    (+ (* (div (inc n) 2) 2) 1))
-  (* (/ (product top-term 1 inc n)
-        (product bottom-term 1 inc n))
-     4.0))
+    (+ (* (div (+ n 1) 2) 2) 1))
+  (define (term n)
+    (/ (top-term n) (bottom-term n)))
+  (* (product term 1 inc n)
+     4))
 
 ;b.
 
